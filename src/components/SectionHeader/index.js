@@ -10,6 +10,10 @@ function SectionHeader({title}) {
     </View>
   );
 }
+
+export default SectionHeader;
+
+
 const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
@@ -27,4 +31,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SectionHeader;
