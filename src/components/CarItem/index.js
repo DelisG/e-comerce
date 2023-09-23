@@ -1,44 +1,49 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import AntDesigner from "react-native-vector-icons/AntDesign";
+import EviIcon from "react-native-vector-icons/EvilIcons";
 
-import modelo1 from "../../assets/images/modelo_1.png";
-
-function CardItem() {
+function CardItem({ image, name, description, price, numItens }) {
   return (
     <View style={styles.card}>
-      <View style={styles.row}>
         <View>
-          <Image style={styles.imagem} source={modelo1} />
+          <Image style={styles.image} source={image} />
         </View>
 
         <View>
           <View style={styles.row}>
             <View>
-              <Text>Camisa de Algodão Regular Fit</Text>
-              <Text>Camisa de Algodão Regular Fit</Text>
+              <Text style={styles.name}>{name}</Text>
             </View>
             <View>
-              <Pressable onPress={() => {}}>
-                <AntDesigner name="checksquare" />
+              <Pressable style={styles.name} onPress={() => {}}>
+                <EviIcon name="trash" size={"20"} color={"#000"} />
               </Pressable>
             </View>
           </View>
 
-          <View>
-            <Text> Tamnho: M</Text>
+          <View style={styles.row}>
+            <Text style={styles.description}>{description}</Text>
           </View>
 
           <View style={styles.row}>
-            <View>
-              <Text>RS 100</Text>
+            <View style={styles.row}>
+              <Text style={styles.price}>{price}</Text>
             </View>
-            <View>
-              <Text>contador</Text>
+
+            <View style={styles.row}>
+              <Pressable style={styles.button} onPress={() => {}}>
+                <AntDesigner name="minus" size={"20"} color={"#000"} />
+              </Pressable>
+
+              <Text style={styles.numItens}>{numItens}</Text>
+
+              <Pressable style={styles.button} onPress={() => {}}>
+                <AntDesigner name="plus" size={"20"} color={"#000"} />
+              </Pressable>
             </View>
           </View>
         </View>
       </View>
-    </View>
   );
 }
 export default CardItem;
@@ -60,25 +65,35 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
   },
-  imagem: {
+  image: {
     width: 150,
     height: 150,
   },
   row: {
-    marginVertical: 20,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+  },
+  name: {
+    fontSize: 16,
   },
   icon: {
-    width: 50,
-    height: 50,
+    marginStart: 10,
   },
-
-  title: {
+  description: {},
+  price: {
+    fontSize: 8,
     fontWeight: "bold",
-    fontSize: 18,
   },
-  link: {
-    color: "red",
+  button: {
+    borderWidth: 1,
+    borderColor: "CACACA",
+    borderRadius: 5,
+    padding: 10,
+    backgroundColor: "#FFF",
+  },
+  numItens: {
+    paddingHorizontal: 5,
+    fontWeight: "bold",
   },
 });
