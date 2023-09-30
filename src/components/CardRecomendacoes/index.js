@@ -1,9 +1,13 @@
+import { useNavigation } from "@react-navigation/native";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import SimpleLineIcon from "react-native-vector-icons/SimpleLineIcons";
 
 function CardRecomendacoes({image, name, price}) {
+
+const navigation = useNavigation();
+
   return (
-    <Pressable style={styles.card} onPress={() => {}}>
+      <Pressable style={styles.card} onPress={() => navigation.navigate("produto")}>
       <Image source={image} style={styles.image} />
       <View style={styles.label}>
         <Text>{name}</Text>

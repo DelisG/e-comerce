@@ -6,17 +6,20 @@ import CarrinhoCompras from "./src/screens/CarrinhoCompras";
 import Login from "./src/screens/Login";
 import Produto from "./src/screens/Produto";
 import Carousel from "./src/components/Carrousel";
+import StackRoutes from "./src/routes/StackRoutes";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <Carousel/>
+    <NavigationContainer>
+      <StackRoutes />
+      {/* <Carousel/> */}
       {/* <Produto/> */}
       {/* <Login/> */}
       {/* <CarrinhoCompras/> */}
       {/* <Loja/> */}
       {/* <Home /> */}
       {/* <TelaInicial /> */}
-    </SafeAreaView>
+    </NavigationContainer>
   );
 }
