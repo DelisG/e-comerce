@@ -6,85 +6,110 @@ import thumbnail4 from "../../assets/images/modelo_4.png";
 
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Carousel from "../../components/Carrousel";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
-function Produto() {
-  const imagens = [thumbnail1, thumbnail2, thumbnail3, thumbnail4];
+function Produto(route) {
+
+  const images = [thumbnail1, thumbnail2, thumbnail3, thumbnail4];
   const sizes = [p, m, g];
 
+  const [sizeOption, setSizeOption] = useState();
+  const [numItens, setNumItens] = useState();
+
+  const navigation = useNavigation();
+
+  const incrementerNumItens = () => {
+    if (numItens > 0) {
+      setNumItens(numItens + 1);
+    }
+  };
+
+  const decrementerNumItens = () => {
+    if (numItens > 0) {
+      setNumItens(numItens - 1);
+    }
+  };
+
   return (
-    <>
+    <ScrollView>
       <Carousel />
-      <View style={styles.container}>
-        <View style={styles.row}>
-          {imagens.map((image, indice) => {
-            return (
-              <Pressable onPress={() => {}} key={indice}>
-                <Image
-                  source={image}
-                  styles={[style.thumbnail, style.border]}
-                />
-              </Pressable>
-            );
-          })}
-        </View>
 
-        <View>
-          <Pressable onPress={() => {}}>
-            <AntDesign name="star" size={20} color={"#FDCC0D"}></AntDesign>
-            <Text style={styles.rate}>4.9</Text>
-            <Text style={styles.reviews}>(85) Review</Text>
-          </Pressable>
-        </View>
+      <Pressable style={styles.arrow} onPress={() => navigation.goBack}>
+        <AntDesign name="arrowleft" size={20} color={"#FDCC0D"}></AntDesign>
+      </Pressable>
 
-        <View>
-          <Text style={styles.name}>
-            Camisa de algodão regular Fit (Masculina)
-          </Text>
-          <Text style={styles.price}>R$ 100</Text>
-          <Text style={styles.text}>Selecionar Tamanho:</Text>
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.linha}></View>
-          <Text style={styles.orange}>OR</Text>
-          <View style={styles.linha}></View>
-        </View>
-
-        <View style={{ flexDirection: "row" }}>
-          {sizes.map((size, indice) => {
-            return (
-              <Pressable
-                onPress={() => {}}
-                style={[styles.sizeButton, styles.sizeButtonSelected]}
-                key={indice}
-              >
-                <Text style={styles.sizeText}>{size}</Text>
-              </Pressable>
-            );
-          })}
-        </View>
-
-        <View style={styles.row}>
-          <View style={(styles.row, styles.buttonGroup)}>
-            <Pressable onPress={() => {}} style={styles.button}>
-              <AntDesign name="minus" size={15}></AntDesign>
+      <View style={styles.row}>
+        {images.map((image, indice) => {
+          return (
+            <Pressable
+              onPress={() => navigation.navigate("carrinhoCompras")}>
+              <AntDesign name="shoppingCart" size={20}></AntDesign>
             </Pressable>
+          );
+        })}
+      </View>
 
-            <Pressable onPress={() => {}} style={styles.button}>
-              <AntDesign name="plus" size={15}></AntDesign>
+      <View>
+        <Pressable onPress={() => {}}>
+          <AntDesign name="star" size={20} color={"#FDCC0D"}></AntDesign>
+          <Text style={styles.rate}>4.9</Text>
+          <Text style={styles.reviews}>(85) Review</Text>
+        </Pressable>
+      </View>
+
+      <View>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.price}>{price}</Text>
+        <Text style={styles.text}>Selecionar Tamanho:</Text>
+      </View>
+
+      <View style={styles.row}>
+        <View style={styles.linha}></View>
+        <Text style={styles.orange}>OR</Text>
+        <View style={styles.linha}></View>
+      </View>
+
+      <View style={{ flexDirection: "row" }}>
+        {sizes.map((size, indice) => {
+          return (
+            <Pressable
+              onPress={() => setSizeOption(indice)}
+              style={[
+                indice === sizeOption
+                  ? styles.sizeButton
+                  : styles.sizeButtonSelected,
+              ]}
+              key={indice}
+            >
+              <Text style={styles.sizeText}>{size}</Text>
             </Pressable>
-          </View>
+          );
+        })}
+      </View>
 
-          <Pressable onPress={() => {}} style={styles.buttonCarrinho}>
-            <Text style={styles.textCarrinho}>Adicionar ao carrinho</Text>
+      <View style={styles.row}>
+        <View style={(styles.row, styles.buttonGroup)}>
+          <Pressable onPress={decrementerNumItens} style={styles.button}>
+            <AntDesign name="minus" size={15}></AntDesign>
           </Pressable>
 
-          <Pressable onPress={() => {}} style={styles.button}>
+          <Text style={styles.numItens}>{numItens}</Text>
+
+          <Pressable onPress={incrementerNumItens} style={styles.button}>
             <AntDesign name="plus" size={15}></AntDesign>
           </Pressable>
         </View>
+
+        <Pressable onPress={() => {}} style={styles.buttonCarrinho}>
+          <Text style={styles.textCarrinho}>Adicionar ao carrinho</Text>
+        </Pressable>
+
+        <Pressable onPress={() => {}} style={styles.button}>
+          <AntDesign name="plus" size={15}></AntDesign>
+        </Pressable>
       </View>
-    </>
+    </ScrollView>
   );
 }
 
@@ -163,4 +188,16 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
   },
+  arrow: {
+    position: "absolute",
+    marginHorizontal: 25,
+    marginVertical: 50,
+    backgroundColor: "#fff",
+    padding: 10,
+    borderRadius: 20,
+  },
+  rowButton:{
+    position: "absolute",
+    flex: 1,
+  }
 });

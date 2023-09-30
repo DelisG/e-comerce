@@ -7,8 +7,13 @@ import {
   View,
 } from "react-native";
 import image from "../../assets/images/tela_principal.png";
+import { useNavigation } from "@react-navigation/native";
 
 function TelaInicial() {
+  const navigation = useNavigation();
+
+
+
   return (
     <SafeAreaView>
       <Image source={image} style={styles.image} />
@@ -18,8 +23,11 @@ function TelaInicial() {
         dinheiro imediato e consciencia mais limpa.
       </Text>
       <View style={styles.buttobGroup}>
-        <Pressable onPress={() => {}} style={styles.botao}>
-          <Text style={styles.textBotao}>Login</Text>
+        <Pressable
+          onPress={() => navigation.navigate("Login")}
+          style={styles.botao}
+        >
+          <Text style={styles.textBotao}>Log In</Text>
         </Pressable>
         <Pressable onPress={() => {}} style={styles.botaoOutline}>
           <Text style={styles.textBotaoOutline}>Sing up</Text>
