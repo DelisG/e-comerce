@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
+import thumbnail1 from "../../assets/images/modelo_1.png";
+import thumbnail2 from "../../assets/images/modelo_2.png";
+import thumbnail3 from "../../assets/images/modelo_3.png";
+import thumbnail4 from "../../assets/images/modelo_4.png";
 
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT = Dimensions.get("window").height;
+const images = [thumbnail1, thumbnail2, thumbnail3, thumbnail4];
 
 function Carousel(images) {
   const [activeImage, setActiveImage] = useState(0);
@@ -18,32 +23,50 @@ function Carousel(images) {
   };
 
   return (
-    <View>
-      <ScrollView
-        horizontal
-        style={styles.container}
-        showsHorizontalScrollIndicator={false}
-        paginaEneabled
-        onScroll={({ nativeEvent }) => handleOnScroll(nativeEvent)}
-      >
-        {images.map((image, indice) => {
-          <Image source={image} key={indice} />;
-        })}
-      </ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View>
+        <ScrollView
+          horizontal
+          style={styles.container}
+          showsHorizontalScrollIndicator={false}
+          paginaEneabled
+          onScroll={({ nativeEvent }) => handleOnScroll(nativeEvent)}
+        >
+          {images.map((image, indice) => {
+            return <Image source={image} key={indice} />;
+          })}
+        </ScrollView>
 
-      <View style={styles.dotGroup}>
-        {images.map((_, indice) => {
-          return (
-            <EntypoIcon
-              name="dot-sigle"
-              style={indice === activeImage ? styles.dotActive : styles.dot}
-              key={indice}
-              size={40}
-            />
-          );
-        })}
+        <View style={styles.dotGroup}>
+          {images.map((_, indice) => {
+            return (
+              <EntypoIcon
+                name="dot-sigle"
+                style={indice === activeImage ? styles.dotActive : styles.dot}
+                key={indice}
+                size={40}
+              />
+            );
+          })}
+        </View>
+
+        <View style={styles.row}>
+          {imagens.map((image, indice) => {
+            return (
+              <Pressable onPress={() => {}}>
+                <Image
+                  source={image}
+                  key={indice}
+                  styles={[
+                    indice === activeImage ? style.thumbnail : style.border,
+                  ]}
+                />
+              </Pressable>
+            );
+          })}
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
