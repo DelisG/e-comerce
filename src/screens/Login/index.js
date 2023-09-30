@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Dimensions,
   Pressable,
@@ -8,58 +7,54 @@ import {
   View,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Checkbox from "expo-checkbox";
+import { useState } from "react";
+import { Checkbox } from "expo-checkbox";
 
 function Login() {
-    const [showPassword, setShowPassword] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <View>
       <View style={styles.box}></View>
+      <View style={styles.container}>
+        <Text style={[styles.title, styles.text]}>Bem - Vindo(a)!</Text>
 
-      <Text>Bem-vindo!</Text>
-
-      <Text>Não possui conta? </Text>
-      <Text style={styles.orange}> Sing Up </Text>
-
-      <TextInput
-        placeholder="E-mail"
-        keyboardType="text"
-        onChange={() => {}}
-        defaultValue=""
-        style={styles.inputwhite}
-      />
-
-      <View style={styles.inputwhite}>
-        <TextInput
-          KayboardType="text"
-          placeholder="Senha"
-          onTouchCancel={() => {}}
-          secureTextEntry={!showPassword}
-        />
-        <Pressable>
-          <Ionicons name={showPassword?"eye-off":"eye"} style={styles.orange} onPress={() => setShowPassword {(!showPassword)}} />
-        </Pressable>
-      </View>
-
-      <Pressable style={styles.button} onPress={() => {}}>
-        <Text style={styles.textButton}>Login</Text>
-      </Pressable>
-
-      <View style={styles.row}>
         <View style={styles.row}>
-            <Checkbox style={styles.checkbox} value={true} onValueChange={()=>{}} color={true?"#ffA700":""}
-          <Ionicons name="checksquare" style={styles.orange} />
-          <Text>Mantenha-me Conectado</Text>
+          <Text style={styles.text}>Não possui conta?</Text>
+          <Text style={[styles.text, styles.link]}> Sing Up</Text>
         </View>
-        <Text style={styles.orange}>Esqueci a senha</Text>
-      </View>
 
-      <View style={styles.row}>
-        <View style={styles.linha}></View>
-        <Text style={styles.orange}>OR</Text>
-        <View style={styles.linha}></View>
+        <TextInput
+          style={styles.input}
+          placeholder="email"
+          onChange={() => {}}
+        />
+        <View style={[styles.row, styles.password]}>
+          <TextInput
+            secureTextEntry={!showPassword}
+            placeholder="Senha"
+            onChange={() => {}}
+          />
+
+          <Pressable onPress={() => setShowPassword(!showPassword)}>
+            <Ionicons
+              name={showPassword ? "eye-off" : "eye"}
+              size={20}
+              color={"#FF7A00"}
+            />
+          </Pressable>
+        </View>
+
+        <Pressable style={styles.button} onchange={() => {}}>
+          <Text style={styles.textButton}>Login</Text>
+        </Pressable>
+
+        <Checkbox
+          style={styles.checkbox}
+          value={true}
+          onValueChange={() => {}}
+          color={true ? "#FFA700" : ""}
+        />
       </View>
     </View>
   );
@@ -73,24 +68,22 @@ const styles = StyleSheet.create({
     height: 200,
     width: Dimensions.get("screen").width,
   },
-  bg: {
-    backgroundColor: "green",
+  container: {
+    margin: 25,
   },
-  button: {
-    backgroundColor: "#FFA700",
-    padding: 10,
-    borderRadius: 10,
-    height: 50,
-    marginVertical: 10,
-    
-  },
-  textButton: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 16,
-    textAlign: "center",
-    justifyContent: "center",
+  row: {
+    flexDirection: "row",
     alignItems: "center",
+  },
+  title: {
+    fontWeight: "bold",
+  },
+  text: {
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  link: {
+    color: "#FFA700",
   },
   input: {
     marginVertical: 10,
@@ -98,38 +91,33 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#CACACA",
+    borderEndColor: "#FFF",
+    borderEndWidth: 0,
     padding: 10,
-    backgroundColor: "#fff",
+    backgroundColor: "#FFF",
   },
-  inputwhite: {
-    padding: 10,
+  password: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: 250,
-    marginVertical: 20,
-    backgroundColor: "#fff",
+    marginVertical: 10,
+    height: 50,
+    padding: 10,
+    backgroundColor: "#FFF",
+    borderColor: "#CACACA",
+  },
+  button: {
+    backgroundColor: "#FFA700",
     borderRadius: 10,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
-    marginEnd: 20,
-  },
-
-  orange: {
-    color: "#FFA959",
-  },
-  row: {
-    marginVertical: 20,
+    height: 50,
+    marginVertical: 10,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
   },
-  linha: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#CACACA",
-    width: 25,
+  textButton: {
+    color: "#FFF",
+    fontWeight: "bold",
+    fontsize: 16,
+    textAlign: "center",
+    paddingTop: 2,
   },
 });
