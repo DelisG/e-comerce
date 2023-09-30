@@ -18,6 +18,9 @@ import modelo1 from "../../assets/images/modelo_1.png";
 import CardRecomendacoes from "../../components/CardRecomendacoes";
 import SectionHeader from "../../components/SectionHeader";
 import CardCategorias from "../../components/CardCategorias";
+import { useNavigation } from "@react-navigation/native";
+
+const navigation = useNavigation();
 
 function Loja() {
   return (
@@ -35,7 +38,7 @@ function Loja() {
           </Pressable>
         </View>
 
-        <Pressable onPress={() => {}}></Pressable>
+        <Pressable onPress={() => navigation.navigate("carrinhoCompras")}></Pressable>
         <Ionicon name="cart-outline" size={30} color={"#000"} />
       </View>
 

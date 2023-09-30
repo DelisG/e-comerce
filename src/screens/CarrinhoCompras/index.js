@@ -3,12 +3,16 @@ import AntDesigner from "react-native-vector-icons/AntDesign";
 import modelo1 from "../../assets/images/modelo_1.png";
 import CardItem from "../../components/CarItem";
 import { TextInput } from "react-native-web";
+import { useNavigation } from "@react-navigation/native";
+
+
+const navigation = useNavigation();
 
 function CarrinhoCompras() {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <Pressable onPress={() => {}}>
+        <Pressable onPress={() => navigation.goBack}>
           <AntDesigner name="arrowleft" size={20} color={"#000"} />
         </Pressable>
 

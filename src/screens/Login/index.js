@@ -9,9 +9,16 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useState } from "react";
 import { Checkbox } from "expo-checkbox";
+import { useNavigation } from "@react-navigation/native";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigation = useNavigation();
+
+  const handleLogin = () => {
+    navigation.navigate("Home");
+  }
 
   return (
     <View>
@@ -45,7 +52,7 @@ function Login() {
           </Pressable>
         </View>
 
-        <Pressable style={styles.button} onchange={() => {}}>
+        <Pressable style={styles.button} onPress={() => {handleLogin}}>
           <Text style={styles.textButton}>Login</Text>
         </Pressable>
 
