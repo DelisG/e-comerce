@@ -17,7 +17,7 @@ import modelo1 from "../../assets/images/modelo_1.png";
 
 import CardRecomendacoes from "../../components/CardRecomendacoes";
 import SectionHeader from "../../components/SectionHeader";
-import CardCategorias from "../../components/cardCategorias";
+import CardCategorias from "../../components/CardCategorias";
 
 function Loja() {
   return (
@@ -41,7 +41,6 @@ function Loja() {
 
       <SectionHeader title={"itens recomendados"} />
 
-
       <View style={styles.row}>
         <CardCategorias image={imagem1} label={"Popular"} />
         <CardCategorias image={imagem2} label={"Homem"} />
@@ -55,7 +54,7 @@ function Loja() {
           <Text style={styles.link}>Ver tudo</Text>
         </Pressable>
       </View>
-      
+
       <CardRecomendacoes image={modelo1} name={""} price={""} />
       <CardRecomendacoes image={modelo1} name={""} price={""} />
     </ScrollView>
