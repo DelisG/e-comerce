@@ -16,9 +16,10 @@ const StackRotas = () => {
         >
             <Stack.Screen name="Tela Inicial" component={TelaInicial} />
             <Stack.Screen name="Sign In" component={SignIn} />
-            <Stack.Screen name="Tab Rotas" component={TabRotas} />
-            <Stack.Screen name="Produto" component={Produto} />
+            <Stack.Screen name="Tab Rotas" component={TabRotas} />  
             <Stack.Screen name="Carrinho" component={Carrinho} />
+            <Stack.Screen name="Produto" component={Produto} />
+          
         </Stack.Navigator>
     )
 }
